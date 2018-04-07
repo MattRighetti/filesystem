@@ -571,6 +571,19 @@ void find(char *name) {
     }
 }
 
+void printCommands() {
+	puts("\nList of commands:");
+	printf("%-27s -> %-45s\n", "create <filename>", "creates a new file");
+	printf("%-27s -> %-45s\n", "create_dir <dir_name>", "creates a new directory");
+	printf("%-27s -> %-45s\n", "read <filename>", "reads the file content");
+	printf("%-27s -> %-45s\n", "delete <filename>", "deletes file");
+	printf("%-27s -> %-45s\n", "delete <dirname>", "deletes dir");
+	printf("%-27s -> %-45s\n", "delete_r <dirname>", "deletes dir and all its content");
+	printf("%-27s -> %-45s\n", "find <filename>", "searches for all the occurrencies of filename");
+	printf("%-27s -> %-45s\n", "write <filename> <message>", "writes message to filename");
+	printf("%-27s -> %-45s\n\n", "exit", "exits the program");
+}
+
 #define CMD(name, ...) 		\
 if (!strcmp(cmd, #name)) {	\
     name(__VA_ARGS__);		\
@@ -581,6 +594,7 @@ int main(int argc, char *argv[]) {
 	char line[MAX_NAME*MAX_NAME+255];
 	char* readF;
     while (1) {
+		printCommands();
         readF = fgets(line, sizeof(line), stdin);
 		if (*line != '\n') {
 			char *message = strchr(line, '"');
